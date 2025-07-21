@@ -85,9 +85,7 @@ export default function TodasNoticiasPage() {
                             </CardTitle>
                             
                             <CardContent className="p-0">
-                                <p className="text-gray-700 mb-3 text-sm">
-                                    {noticia.descricao || "Sem descrição"}
-                                </p>
+                                
                                 
                                 <div className="text-xs text-gray-500 mb-3">
                                     <p>Autor: {noticia.autor || "Não informado"}</p>
