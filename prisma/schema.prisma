@@ -1,0 +1,39 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model Noticia {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  titulo      String
+  local       String?
+  autor       String?
+  descricao   String?
+  data        DateTime
+  categoria   String?
+  tipo        Int?
+  comentarios Comentario[]
+}
+
+model Comentario {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  data       DateTime @default(now())
+  autor      String
+  comentario String
+  noticia    Noticia  @relation(fields: [noticiaId], references: [id], onDelete: Cascade)
+  noticiaId  String   @db.ObjectId
+}
+
+model Log {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  descricao String
+  tipo      String
+  data      DateTime @default(now())
+}
